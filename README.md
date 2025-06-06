@@ -37,18 +37,13 @@ The task involves completing some code for the school's software platform.
 Specifically, you need to fix a website that displays: 
 
 a list of learners 
-<!-- (array) -->
 
 along with their basic information such as
 
 ID, name, email, and a list of mentors.  
-<!-- (key value pairs) -->
 
 Users should be able to click on a learner to highlight it, 
-<!-- (evt listener) -->
-
 and the list of mentors for each learner should be expandable and collapsible. 
-<!-- (class removal?) --> 
 
 You can refer to the 
 [full mockup](https://w-s5-challenge.herokuapp.com/) for the design and behavior of the page.
@@ -132,16 +127,16 @@ Fortunately, you have [a very detailed mock](https://w-s5-challenge.herokuapp.co
 
 Hey! Let's make sure you're up to speed with your **action items so far**. 
 
-- [x] The app is installed on your machine, with both `start` and `test` scripts running in terminals. <!-- complete -->
-- [x] You studied the [mock](https://w-s5-challenge.herokuapp.com/) in the Elements tab of Dev Tools. <!-- complete -->
-- [x] You saw how some text contents and some class names change as the user clicks around. <!-- complete -->
+- [x] The app is installed on your machine, with both `start` and `test` scripts running in terminals.
+- [x] You studied the [mock](https://w-s5-challenge.herokuapp.com/) in the Elements tab of Dev Tools. 
+- [x] You saw how some text contents and some class names change as the user clicks around. <!-- 
 
 Awesome! Our back-end engineer says that the JSON data needed to build the Learner Cards comes from two endpoints:
 
-- Endpoint A [GET] <http://localhost:3003/api/learners> <!-- complete -->
-- Endpoint B [GET] <http://localhost:3003/api/mentors> <!-- complete -->
+- Endpoint A [GET] <http://localhost:3003/api/learners> 
+- Endpoint B [GET] <http://localhost:3003/api/mentors>
 
-❗ You should stop now, and **try out both endpoints using Postman**, to see what they return. <!-- complete -->
+❗ You should stop now, and **try out both endpoints using Postman**, to see what they return. <!-- 
 
 ❗ Here's the tricky thing: each learner has a short list of mentors, but the response from Endpoint A only identifies the mentors by their ID numbers. This means you will need to match the mentor IDs from Endpoint A with the real names of the mentors, found in the response from Endpoint B.
 
