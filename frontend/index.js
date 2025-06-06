@@ -1,4 +1,5 @@
 async function sprintChallenge5() { // Note the async keyword so you can use `await` inside sprintChallenge5
+
   // 👇 WORK ONLY BELOW THIS LINE 👇
   // 👇 WORK ONLY BELOW THIS LINE 👇
   // 👇 WORK ONLY BELOW THIS LINE 👇
@@ -9,15 +10,24 @@ async function sprintChallenge5() { // Note the async keyword so you can use `aw
   // ❗ Use the variables `mentors` and `learners` to store the data.
   // ❗ Use the await keyword when using axios.
 
-  let mentors = [] // fix this
-  let learners = [] // fix this
+  let learners = [] 
+  let mentors = []
+
+  async function fetchData() {
+    const learnersResponse = await axios.get("http://localhost:3003/api/learners")
+    learners = learnersResponse.data
+
+    const mentorsResponse = await axios.get("http://localhost:3003/api/mentors")
+    mentors = mentorsResponse.data
+  }
+
+  await fetchData();
 
   // 👆 ==================== TASK 1 END ====================== 👆
 
+
   // 👇 ==================== TASK 2 START ==================== 👇
 
-  // 🧠 Combine learners and mentors.
-  // ❗ At this point the learner objects only have the mentors' IDs.
   // ❗ Fix the `learners` array so that each learner ends up with this exact structure:
   // {
   //   id: 6,
@@ -26,10 +36,23 @@ async function sprintChallenge5() { // Note the async keyword so you can use `aw
   //   mentors: [
   //     "Bill Gates",
   //     "Grace Hopper"
-  //   ]`
+  //   ]
   // }
 
+  learners = learners.map(learner => {
+    const fullMentorNames = learner.mentors.map(id => {
+      const mentor = mentors.find(m => m.id === id)
+      return mentor ? `${mentor.firstName} ${mentor.lastName}` : 'Unknown Mentor'
+    })
+
+    return {
+      ...learner,
+      mentors: fullMentorNames
+    }
+  })
+
   // 👆 ==================== TASK 2 END ====================== 👆
+
 
   const cardsContainer = document.querySelector('.cards')
   const info = document.querySelector('.info')
@@ -38,52 +61,59 @@ async function sprintChallenge5() { // Note the async keyword so you can use `aw
 
   // 👇 ==================== TASK 3 START ==================== 👇
 
-  for (let learner of learners) { // looping over each learner object
-
-    // 🧠 Flesh out the elements that describe each learner
-    // ❗ Give the elements below their (initial) classes, textContent and proper nesting.
-    // ❗ Do not change the variable names, as the code that follows depends on those names.
-    // ❗ Also, loop over the mentors inside the learner object, creating an <li> element for each mentor.
-    // ❗ Fill each <li> with a mentor name, and append it to the <ul> mentorList.
-    // ❗ Inspect the mock site closely to understand what the initial texts and classes look like!
-
+  for (let learner of learners) { 
+    
     const card = document.createElement('div')
     const heading = document.createElement('h3')
     const email = document.createElement('div')
     const mentorsHeading = document.createElement('h4')
     const mentorsList = document.createElement('ul')
 
-    // 👆 ==================== TASK 3 END ====================== 👆
+    card.classList.add('card')
 
-    // 👆 WORK ONLY ABOVE THIS LINE 👆
-    // 👆 WORK ONLY ABOVE THIS LINE 👆
-    // 👆 WORK ONLY ABOVE THIS LINE 👆
+    heading.classList.add('name')
+    heading.textContent = learner.fullName
+
+    email.classList.add('email')
+    email.textContent = learner.email
+
+    mentorsHeading.classList.add('closed')
+    mentorsHeading.textContent = 'Mentors'
+
+    learner.mentors.forEach(name => {
+      const li = document.createElement('li')
+      li.textContent = name
+      mentorsList.appendChild(li)
+    })
+
+    card.appendChild(heading)
+    card.appendChild(email)
+    card.appendChild(mentorsHeading)
     card.appendChild(mentorsList)
+
     card.dataset.fullName = learner.fullName
+
     cardsContainer.appendChild(card)
 
     card.addEventListener('click', evt => {
       const mentorsHeading = card.querySelector('h4')
-      // critical booleans
       const didClickTheMentors = evt.target === mentorsHeading
       const isCardSelected = card.classList.contains('selected')
-      // do a reset of all learner names, selected statuses, info message
+
+
       document.querySelectorAll('.card').forEach(crd => {
         crd.classList.remove('selected')
         crd.querySelector('h3').textContent = crd.dataset.fullName
       })
       info.textContent = 'No learner is selected'
-      // conditional logic
+
       if (!didClickTheMentors) {
-        // easy case, no mentor involvement
         if (!isCardSelected) {
-          // selecting the card:
           card.classList.add('selected')
           heading.textContent += `, ID ${learner.id}`
           info.textContent = `The selected learner is ${learner.fullName}`
         }
       } else {
-        // clicked on mentors, we toggle and select no matter what
         card.classList.add('selected')
         if (mentorsHeading.classList.contains('open')) {
           mentorsHeading.classList.replace('open', 'closed')
@@ -91,13 +121,14 @@ async function sprintChallenge5() { // Note the async keyword so you can use `aw
           mentorsHeading.classList.replace('closed', 'open')
         }
         if (!isCardSelected) {
-          // if card was not selected adjust texts
           heading.textContent += `, ID ${learner.id}`
           info.textContent = `The selected learner is ${learner.fullName}`
         }
       }
     })
   }
+
+  // 👆 ==================== TASK 3 END ====================== 👆
 
   const footer = document.querySelector('footer')
   const currentYear = new Date().getFullYear()

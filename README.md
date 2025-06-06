@@ -2,7 +2,11 @@
 
 ## Introduction
 
-Welcome to Sprint Challenge 5! Today, you'll practice using JavaScript to manipulate the DOM by fetching data from the network and building a section of a web page using "vanilla" JavaScript, without any frameworks.
+Welcome to Sprint Challenge 5! Today, you'll practice using JavaScript to manipulate the DOM by 
+
+fetching data from the network 
+and 
+building a section of a web page using "vanilla" JavaScript, without any frameworks.
 
 Here's an overview of the tasks you need to complete:
 
@@ -26,9 +30,33 @@ Additionally, the following soft skills will greatly impact your performance:
 
 ## Instructions
 
-On your first day as a junior web developer at a coding school, you have been assigned a ticket to complete. The task involves completing some code for the school's software platform.
+On your first day as a junior web developer at a coding school, 
+you have been assigned a ticket to complete. 
+The task involves completing some code for the school's software platform.
 
-Specifically, you need to fix a website that displays a list of learners along with their basic information such as ID, name, email, and a list of mentors. Users should be able to click on a learner to highlight it, and the list of mentors for each learner should be expandable and collapsible. You can refer to the [full mockup](https://w-s5-challenge.herokuapp.com/) for the design and behavior of the page. Don't worry: most of the code is already done, you only need to **fix three areas of the code** which are incomplete, causing the website not to work correctly.
+Specifically, you need to fix a website that displays: 
+
+a list of learners 
+<!-- (array) -->
+
+along with their basic information such as
+
+ID, name, email, and a list of mentors.  
+<!-- (key value pairs) -->
+
+Users should be able to click on a learner to highlight it, 
+<!-- (evt listener) -->
+
+and the list of mentors for each learner should be expandable and collapsible. 
+<!-- (class removal?) --> 
+
+You can refer to the 
+[full mockup](https://w-s5-challenge.herokuapp.com/) for the design and behavior of the page.
+
+Don't worry: most of the code is already done, 
+
+you only need to **fix three areas of the code** which are incomplete, 
+causing the website not to work correctly.
 
 To help you complete the task, several members of your team will provide you with instructions and advice.
 
@@ -43,7 +71,18 @@ To help you complete the task, several members of your team will provide you wit
 
 This is a **full-stack web application** that comprises both back-end and front-end components. If deployed to production, the back-end part would run in the cloud (think Amazon Web Services or Azure), while the front-end would execute inside the user's web browser (like Chrome for Android, or Firefox for desktop).
 
-As a front-end engineer, your focus is mainly on the files that load **on the user's device**. In this particular case, these files live inside the `frontent` folder. The `backend` folder contains a web server built in Node, but the project as a whole is managed as a Node application. As such, it contains a `package.json` file at the root, containing some meta-information like name and version, and a few useful scripts developers can use as they work on the app, like "npm test".
+As a front-end engineer, your focus is mainly on: 
+
+the files that load **on the user's device**. 
+
+In this particular case, these files live inside the `frontend` folder. 
+
+The `backend` folder contains a web server built in Node, 
+
+but the project as a whole is managed as a Node application. 
+
+As such, it contains a `package.json` file at the root, 
+containing some meta-information like name and version, and a few useful scripts developers can use as they work on the app, like "npm test".
 
 1. You will **clone this repository** to your computer, which will allow you to run the software locally for development and testing purposes.
 
@@ -91,18 +130,18 @@ Fortunately, you have [a very detailed mock](https://w-s5-challenge.herokuapp.co
 
   ---
 
-Hey! Let's make sure you're up to speed with your **action items so far**.
+Hey! Let's make sure you're up to speed with your **action items so far**. 
 
-- [x] The app is installed on your machine, with both `start` and `test` scripts running in terminals.
-- [x] You studied the [mock](https://w-s5-challenge.herokuapp.com/) in the Elements tab of Dev Tools.
-- [x] You saw how some text contents and some class names change as the user clicks around.
+- [x] The app is installed on your machine, with both `start` and `test` scripts running in terminals. <!-- complete -->
+- [x] You studied the [mock](https://w-s5-challenge.herokuapp.com/) in the Elements tab of Dev Tools. <!-- complete -->
+- [x] You saw how some text contents and some class names change as the user clicks around. <!-- complete -->
 
 Awesome! Our back-end engineer says that the JSON data needed to build the Learner Cards comes from two endpoints:
 
-- Endpoint A [GET] <http://localhost:3003/api/learners>
-- Endpoint B [GET] <http://localhost:3003/api/mentors>
+- Endpoint A [GET] <http://localhost:3003/api/learners> <!-- complete -->
+- Endpoint B [GET] <http://localhost:3003/api/mentors> <!-- complete -->
 
-❗ You should stop now, and **try out both endpoints using Postman**, to see what they return.
+❗ You should stop now, and **try out both endpoints using Postman**, to see what they return. <!-- complete -->
 
 ❗ Here's the tricky thing: each learner has a short list of mentors, but the response from Endpoint A only identifies the mentors by their ID numbers. This means you will need to match the mentor IDs from Endpoint A with the real names of the mentors, found in the response from Endpoint B.
 
